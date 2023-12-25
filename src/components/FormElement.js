@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./FormElement.css";
 
 const FormElement = ({ onItemAdd, changeValidAge, changeValidName }) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+
+  const collegeNameRef = useRef();
 
   const handleChangeName = (event) => {
     setEnteredName(event.target.value);
@@ -23,12 +25,15 @@ const FormElement = ({ onItemAdd, changeValidAge, changeValidName }) => {
       changeValidAge();
       return;
     }
+
     setEnteredAge("");
     setEnteredName("");
     onItemAdd({
       name: enteredName,
       age: enteredAge,
+      collegeName: collegeNameRef.current.value,
     });
+    collegeNameRef.current.value = "";
   };
 
   return (
@@ -41,6 +46,10 @@ const FormElement = ({ onItemAdd, changeValidAge, changeValidName }) => {
         <div className="label-input-container">
           <label>Enter Age </label>
           <input type="number" value={enteredAge} onChange={handleChangeAge} />
+        </div>
+        <div className="label-input-container">
+          <label>Enter College Name</label>
+          <input type="text" ref={collegeNameRef} />
         </div>
         <button type="submit">Add User</button>
       </form>

@@ -5,7 +5,7 @@ const FormDisplay = ({ itemArr }) => {
   return (
     <div>
       {itemArr.map((ele,i) => {
-        return <DisplayItem name={ele.name} age={ele.age} key={i}/>;
+        return <DisplayItem name={ele.name} age={ele.age} college={ele.collegeName}key={i}/>;
       })}
     </div>
   );
