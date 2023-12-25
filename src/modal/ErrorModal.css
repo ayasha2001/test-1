@@ -1,0 +1,44 @@
+.error-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: white;
+  height: 220px;
+  width: 500px;
+  border-radius: 10px;
+  border: 2px solid gray;
+  box-shadow: 2px;
+}
+.error-modal button{
+    font-weight: bold;
+    color: white;
+    background-color: #03396C;
+    border-radius: 5px;
+    z-index: 2;
+    padding: 8px;
+}
+
+.header {
+  background-color: #03396c;
+  color: white;
+  height: 80px;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 30px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 9; /* Place it behind the modal (z-index 10) */
+}
