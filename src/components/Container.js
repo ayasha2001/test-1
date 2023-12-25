@@ -7,6 +7,8 @@ const Container = () => {
   const [arr, setArr] = useState([]);
   const [isValidAge, setIsValidAge] = useState(true);
   const [isValidName, setIsValidName] = useState(true);
+  const [isValidCllgName, setIsValidCllgName] = useState(true);
+
   let errorMsg="";
 
   const onItemAdd = (item) => {
@@ -22,10 +24,15 @@ const Container = () => {
   const changeValidName = () => {
     setIsValidName(!isValidName);
   };
+  
+  const changeValidCllgName = () => {
+    setIsValidCllgName(!isValidCllgName);
+  };
 
   const onCloseModal = () =>{
     setIsValidAge(true)
     setIsValidName(true)
+    setIsValidCllgName(true)
   }
 
   if(!isValidAge){
@@ -43,6 +50,7 @@ const Container = () => {
         onItemAdd={onItemAdd}
         changeValidAge={changeValidAge}
         changeValidName={changeValidName}
+        changeValidCllgName={changeValidCllgName}
       />
       <FormDisplay itemArr={arr} />
     </div>

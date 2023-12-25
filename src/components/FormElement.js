@@ -1,13 +1,29 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./FormElement.css";
 
-const FormElement = ({ onItemAdd, changeValidAge, changeValidName }) => {
+const FormElement = ({
+  onItemAdd,
+  changeValidAge,
+  changeValidName,
+  changeValidCllgName,
+}) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [enteredCllgName, setEnteredCllgName] = useState("");
 
-  const collegeNameRef = useRef();
+  // const collegeNameRef = useRef();
 
   const handleChangeName = (event) => {
+    setEnteredName(event.target.value);
+  };
+  useEffect(() => {
+    if (enteredCllgName.trim().length === 0) {
+      changeValidCllgName();
+      return;
+    }
+  }, [enteredCllgName]);
+
+  const handleChangeCllgName = (event) => {
     setEnteredName(event.target.value);
   };
 
@@ -26,14 +42,16 @@ const FormElement = ({ onItemAdd, changeValidAge, changeValidName }) => {
       return;
     }
 
+
     setEnteredAge("");
     setEnteredName("");
+    setEnteredCllgName("");
     onItemAdd({
       name: enteredName,
       age: enteredAge,
-      collegeName: collegeNameRef.current.value,
+      collegeName: enteredCllgName,
     });
-    collegeNameRef.current.value = "";
+    // collegeNameRef.current.value = "";
   };
 
   return (
@@ -49,7 +67,8 @@ const FormElement = ({ onItemAdd, changeValidAge, changeValidName }) => {
         </div>
         <div className="label-input-container">
           <label>Enter College Name</label>
-          <input type="text" ref={collegeNameRef} />
+          <input type="text" value={enteredCllgName} onChange={handleChangeCllgName} />
+          {/* <input type="text" ref={collegeNameRef} /> */}
         </div>
         <button type="submit">Add User</button>
       </form>
